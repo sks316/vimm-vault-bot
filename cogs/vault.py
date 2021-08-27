@@ -27,12 +27,12 @@ class Vault(commands.Cog):
     async def vault_updates(self):
         #--first we get the channel to post updates to, this is specified in the config file that we imported earlier so we can call the channel ID with config.updates_channel--#
         channel = self.bot.get_channel(config.updates_channel)
-		  #--now we get the timestamp, if the timestamp file doesn't exist then we store the current timestamp as timestamp.txt and end--#
+        #--now we get the timestamp, if the timestamp file doesn't exist then we store the current timestamp as timestamp.txt and end--#
         if os.path.exists("timestamp.txt"):
-            #--Next we read the timestamp from the file--#
+            #--Next we read the timestamp from the file and store it as "timestamp"--#
             with open('timestamp.txt', 'r') as f:
                 timestamp = f.read()
-		      #--Now we get recently-uploaded games from the Vimm's Lair API using the stored timestamp, using async and aiohttp instead of requests so as to not cause blocking--#
+		      #--Now we get recently-uploaded games from the Vimm's Lair API using the stored timestamp in an fstring, using async and aiohttp instead of requests so as to not cause blocking--#
             async with aiohttp.ClientSession() as session:
                 async with session.get(f'https://vimm.net/api/uploads.php?since={timestamp}') as result:
                     results = await result.text()
@@ -41,9 +41,9 @@ class Vault(commands.Cog):
             #--the API uses GMT-01:00, which is equivalent to Azores Standard Time, or Atlantic/Azores. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Atlantic/Azores--#
             timezone = pytz.timezone('Atlantic/Azores')
             timestamp = datetime.now(timezone)
-				#--then we format it properly so we can interact with the API using this timestamp--#
+            #--then we format it properly so we can interact with the API using this timestamp--#
             timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
-				#--and then save it to timestamp.txt, overwriting any previously-saved timestamp--#
+            #--and then save it to timestamp.txt, overwriting any previously-saved timestamp--#
             with open('timestamp.txt', 'w') as f:
                 f.write(timestamp)
             #--now we take the JSON we loaded earlier, and get all the items in games[results]. If there are none, this does nothing and silently fails, negating the need for further error handling--#
@@ -58,9 +58,9 @@ class Vault(commands.Cog):
             #--the API uses GMT-01:00, which is equivalent to Azores Standard Time, or Atlantic/Azores. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Atlantic/Azores--#
             timezone = pytz.timezone('Atlantic/Azores')
             timestamp = datetime.now(timezone)
-				#--next we format it properly so we can interact with the API using this timestamp--#
+            #--next we format it properly so we can interact with the API using this timestamp--#
             timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
-				#--finally, we make a new file named timestamp.txt and save it there--#
+            #--finally, we make a new file named timestamp.txt and save it there--#
             with open('timestamp.txt', 'w') as f:
                 f.write(timestamp)
 	 
