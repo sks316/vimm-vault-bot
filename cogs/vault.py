@@ -23,7 +23,7 @@ class Vault(commands.Cog):
     async def request(self, ctx):
         await ctx.send("This command is not yet implemented. I hope to implement this fully in the future, so please look forward to it.")
 
-    @tasks.loop(seconds=30)
+    @tasks.loop(minutes=1)
     async def vault_updates(self):
         #--first we get the channel to post updates to, this is specified in the config file that we imported earlier so we can call the channel ID with config.updates_channel--#
         channel = self.bot.get_channel(config.updates_channel)
