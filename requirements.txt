@@ -1,3 +1,5 @@
 discord.py
 asyncio
+aiohttp
 python-dateutil
+pytz

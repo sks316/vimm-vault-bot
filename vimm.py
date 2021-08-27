@@ -23,20 +23,22 @@ botstatus =[
    'with v.help',
    'with v.lookup',
    'games from The Vault',
+	'in #vault-updates',
    'Preserving the Classics since 1997!',
 	'with Redump',
 	'with No-Intro',
 	'with file hashes',
-	'Nintendo',
-	'Genesis',
-	'Super Nintendo',
-	'Saturn',
+	'on an emulator',
+	'Nintendo Entertainment System',
+	'SEGA Genesis',
+	'Super Nintendo Entertainment System',
+	'SEGA Saturn',
 	'PlayStation',
 	'Nintendo 64',
-	'Dreamcast',
+	'SEGA Dreamcast',
 	'PlayStation 2',
 	'Xbox',
-	'GameCube',
+	'Nintendo GameCube',
 	'PlayStation 3',
 	'Wii',
 	'WiiWare',
@@ -44,7 +46,7 @@ botstatus =[
 	'Game Boy Color',
 	'Game Boy Advance',
 	'Nintendo DS',
-	'PS Portable',
+	'PlayStation Portable',
 ]
         
 @bot.event
@@ -53,7 +55,7 @@ async def on_ready():
     for c in cogs:
         bot.load_extension(c)
     print("The Vault Discord Bot, designed for Vimm's Lair")
-    print('v1.0 by ' + dev.name + "#" + dev.discriminator + ' - Support: DM PrincessLillie#2523')
+    print('v1.0 by ' + dev.name + "#" + dev.discriminator + ' - Support: Not supported, see README.md')
     print('Logged into: ' + bot.user.name + "#" + bot.user.discriminator)
     print('------')
 
@@ -93,9 +95,8 @@ async def info(ctx):
     else:
         time_format = "**{h}** hours, **{m}** minutes, and **{s}** seconds."
     uptime_stamp = time_format.format(d=days, h=hours, m=minutes, s=seconds)
-    embed = discord.Embed(title=botver, description="I'm a bot made to post new releases in The Vault at Vimm's Lair to a channel in the Vimm's Lair Discord server. I can also be used to look up games in The Vault and request games to be uploaded to The Vault.", color=0x7289da)
+    embed = discord.Embed(title=botver, description="I'm a bot made to post new releases in The Vault at Vimm's Lair to a channel in the Vimm's Lair Discord server. In the future, I'll also be able to look up games in The Vault and request games to be uploaded to The Vault.", color=0x7289da)
     embed.add_field(name="Made by:", value=dev.name + "#" + dev.discriminator)
-    embed.add_field(name="This bot is currently in:", value=f"{len(bot.guilds)} server(s)")
     embed.add_field(name="Uptime:", value="This bot has been online for {}".format(uptime_stamp), inline=False)
     embed.add_field(name="Source Code:", value="[My source code is available on GitHub.](https://github.com/sks316/vimm-vault-bot)", inline=False)
     embed.set_footer(text=botver + " by PrincessLillie#2523", icon_url=bot.user.avatar_url)
