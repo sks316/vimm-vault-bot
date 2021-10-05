@@ -52,8 +52,6 @@ botstatus =[
 @bot.event
 async def on_ready():
     dev = bot.get_user(config.owner)
-    for c in cogs:
-        bot.load_extension(c)
     print("The Vault Discord Bot, designed for Vimm's Lair")
     print('v1.0 by ' + dev.name + "#" + dev.discriminator + ' - Support: Not supported, see README.md')
     print('Logged into: ' + bot.user.name + "#" + bot.user.discriminator)
@@ -166,4 +164,7 @@ async def on_command_error(ctx, error):
         await err.delete(delay=10)
 
 change_status.start()
+#--moved from on_ready, didn't know it was bad to load cogs in on_ready--#
+for c in cogs:
+    bot.load_extension(c)
 bot.run(config.token)
