@@ -37,22 +37,30 @@ class Vault(commands.Cog):
                 async with session.get(f'https://vimm.net/api/uploads.php?since={timestamp}') as result:
                     results = await result.text()
                     #--the API returns results in JSON format, so we parse it as JSON using the JSON module and store it as "games"--#
-                    games = json.loads(results)
-            #--the API uses GMT-01:00, which is equivalent to Azores Standard Time, or Atlantic/Azores. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Atlantic/Azores--#
-            timezone = pytz.timezone('Atlantic/Azores')
-            timestamp = datetime.now(timezone)
-            #--then we format it properly so we can interact with the API using this timestamp--#
-            timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
-            #--and then save it to timestamp.txt, overwriting any previously-saved timestamp--#
-            with open('timestamp.txt', 'w') as f:
-                f.write(timestamp)
+                    try:
+                        games = json.loads(results)
+                        #--the API uses GMT-01:00, which is equivalent to Azores Standard Time, or Atlantic/Azores. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Atlantic/Azores--#
+                        timezone = pytz.timezone('Atlantic/Azores')
+                        timestamp = datetime.now(timezone)
+                        #--then we format it properly so we can interact with the API using this timestamp--#
+                        timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
+                        #--and then save it to timestamp.txt, overwriting any previously-saved timestamp--#
+                        with open('timestamp.txt', 'w') as f:
+                            f.write(timestamp)
+                    #--if the JSON parsing fails, we handle the error accordingly--#
+                    except:
+                        games = None
+                        pass
             #--now we take the JSON we loaded earlier, and get all the items in games[results]. If there are none, this does nothing and silently fails, negating the need for further error handling--#
             for x in games['results']:
                 #--we take the game title and the game system and store them accordingly--#
                 game = x['title']
                 system = x['system']
                 #--finally, we return this information to Discord in our specified channel--#
-                await channel.send(f"`{system}: {game}` has been uploaded to The Vault.")
+                try:
+                    await channel.send(f"`{system}: {game}` has been uploaded to The Vault.")
+                except:
+                    pass
         #--if the timestamp.txt doesn't exist, then we make a new one--#
         else:
             #--the API uses GMT-01:00, which is equivalent to Azores Standard Time, or Atlantic/Azores. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Atlantic/Azores--#
