@@ -49,18 +49,21 @@ class Vault(commands.Cog):
                             f.write(timestamp)
                     #--if the JSON parsing fails, we handle the error accordingly--#
                     except:
-                        games = None
+                        games = { "results": [] }
                         pass
             #--now we take the JSON we loaded earlier, and get all the items in games[results]. If there are none, this does nothing and silently fails, negating the need for further error handling--#
-            for x in games['results']:
-                #--we take the game title and the game system and store them accordingly--#
-                game = x['title']
-                system = x['system']
-                #--finally, we return this information to Discord in our specified channel--#
-                try:
-                    await channel.send(f"`{system}: {game}` has been uploaded to The Vault.")
-                except:
-                    pass
+            try:
+                for x in games['results']:
+                    #--we take the game title and the game system and store them accordingly--#
+                    game = x['title']
+                    system = x['system']
+                    #--finally, we return this information to Discord in our specified channel--#
+                    try:
+                        await channel.send(f"`{system}: {game}` has been uploaded to The Vault.")
+                    except:
+                        pass
+            except:
+                pass
         #--if the timestamp.txt doesn't exist, then we make a new one--#
         else:
             #--the API uses GMT-01:00, which is equivalent to Azores Standard Time, or Atlantic/Azores. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Atlantic/Azores--#
