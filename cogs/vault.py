@@ -39,8 +39,8 @@ class Vault(commands.Cog):
                     #--the API returns results in JSON format, so we parse it as JSON using the JSON module and store it as "games"--#
                     try:
                         games = json.loads(results)
-                        #--the API uses GMT-01:00, which is equivalent to Azores Standard Time, or Atlantic/Azores. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Atlantic/Azores--#
-                        timezone = pytz.timezone('Atlantic/Azores')
+                        #--the API uses GMT-00:00. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Etc/GMT--#
+                        timezone = pytz.timezone('Etc/GMT')
                         timestamp = datetime.now(timezone)
                         #--then we format it properly so we can interact with the API using this timestamp--#
                         timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
@@ -66,8 +66,8 @@ class Vault(commands.Cog):
                 pass
         #--if the timestamp.txt doesn't exist, then we make a new one--#
         else:
-            #--the API uses GMT-01:00, which is equivalent to Azores Standard Time, or Atlantic/Azores. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Atlantic/Azores--#
-            timezone = pytz.timezone('Atlantic/Azores')
+            #--the API uses GMT-00:00. We use the third-party library pytz in conjunction with Python's built-in datetime module to get the timezone of Etc/GMT--#
+            timezone = pytz.timezone('Etc/GMT')
             timestamp = datetime.now(timezone)
             #--next we format it properly so we can interact with the API using this timestamp--#
             timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
