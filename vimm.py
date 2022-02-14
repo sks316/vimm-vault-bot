@@ -16,7 +16,7 @@ cogs = ['cogs.general', 'cogs.other', 'cogs.admin', 'cogs.vault']
 
 start_time = datetime.datetime.utcnow()
 
-botver = "vimm-vault-bot v1.0"
+botver = "vimm-vault-bot v1.1"
 
 #--List of playing statuses the bot can cycle through.--#
 botstatus =[
@@ -53,7 +53,7 @@ botstatus =[
 async def on_ready():
     dev = bot.get_user(config.owner)
     print("The Vault Discord Bot, designed for Vimm's Lair")
-    print('v1.0 by ' + dev.name + "#" + dev.discriminator + ' - Support: Not supported, see README.md')
+    print('v1.1 by ' + dev.name + "#" + dev.discriminator + ' - Support: Not supported, see README.md')
     print('Logged into: ' + bot.user.name + "#" + bot.user.discriminator)
     print('------')
 
@@ -97,7 +97,7 @@ async def info(ctx):
     embed.add_field(name="Made by:", value=dev.name + "#" + dev.discriminator)
     embed.add_field(name="Uptime:", value="This bot has been online for {}".format(uptime_stamp), inline=False)
     embed.add_field(name="Source Code:", value="[My source code is available on GitHub.](https://github.com/sks316/vimm-vault-bot)", inline=False)
-    embed.set_footer(text=botver + " by PrincessLillie#2523", icon_url=bot.user.avatar_url)
+    embed.set_footer(text=botver + " by PrincessLillie#2523", icon_url=bot.user.avatar.url)
     await ctx.send(embed=embed)
 
 bot.remove_command('help')

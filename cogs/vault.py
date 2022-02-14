@@ -8,7 +8,7 @@ import aiohttp
 import os
 import vimm_config as config
 
-botver = "vimm-vault-bot v1.0"
+botver = "vimm-vault-bot v1.1"
 
 class Vault(commands.Cog):
     def __init__(self, bot):

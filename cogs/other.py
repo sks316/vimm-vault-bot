@@ -2,7 +2,7 @@ import nextcord
 from nextcord.ext import commands
 import vimm_config as config
 
-botver = "vimm-vault-bot v1.0"
+botver = "vimm-vault-bot v1.1"
 
 class Other(commands.Cog):
     def __init__(self, bot):
