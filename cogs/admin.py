@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import nextcord
+from nextcord.ext import commands
 import os
 import io
 import textwrap
@@ -16,7 +16,7 @@ class Admin(commands.Cog):
     @commands.command(pass_context=True)
     @commands.is_owner()
     async def adminhelp(self, ctx):
-        embed = discord.Embed(title=botver, description="Administrator commands for vimm-vault-bot. \n The command prefix is `v.`. To run a command, you must begin a message with `v.`.", color=0x7289da)
+        embed = nextcord.Embed(title=botver, description="Administrator commands for vimm-vault-bot. \n The command prefix is `v.`. To run a command, you must begin a message with `v.`.", color=0x7289da)
         embed.add_field(name="Commands:", value="**v.shutdown** - Shuts down the bot. Aliases: **v.logout** \n**v.changestatus** - Changes the bot's Playing status. \n**v.reload** - Reloads all cogs.\n**v.serverlist** - Outputs a list of servers the bot is in to the terminal. \n**v.clearterm** - Clears the terminal. \n**v.eval** - Evaluate provided Python code.", inline=False)
         embed.set_footer(text=botver + " by PrincessLillie#2523", icon_url=self.bot.user.avatar_url)
         await ctx.message.author.send(embed=embed)
@@ -25,7 +25,7 @@ class Admin(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def changestatus(self, ctx, *, arg):
-        await self.bot.change_presence(activity=discord.Game(name=arg))
+        await self.bot.change_presence(activity=nextcord.Game(name=arg))
         await ctx.send(":ok_hand: Done.")
 
     @commands.command(pass_context=True)

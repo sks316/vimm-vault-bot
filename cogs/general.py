@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import nextcord
+from nextcord.ext import commands
 import vimm_config as config
 
 botver = "vimm-vault-bot v1.0"
@@ -21,7 +21,7 @@ class General(commands.Cog):
 
     @commands.command(pass_context=True)
     async def help(self, ctx):
-        embed = discord.Embed(title=botver, description="The command prefix is `v.`. To run a command, you must begin a message with `v.`.", color=0x7289da)
+        embed = nextcord.Embed(title=botver, description="The command prefix is `v.`. To run a command, you must begin a message with `v.`.", color=0x7289da)
         embed.add_field(name="The Vault:", value="**v.lookup** - Looks for a game in The Vault and returns the results. (Not yet implemented) Aliases: **v.search**\n**v.request** - Requests for a game to be added to The Vault. (Not yet implemented)", inline=False)
         embed.add_field(name="Bot:", value="**v.info** - See information about the bot, such as its uptime and a link to the source code.\n**v.ping** - Returns the bot's latency. Aliases: **v.pong**\n**v.bug** - Submit a bug report if anything goes wrong. This is not to be used for bugs in Vimm's Lair, only for bugs in this bot. \n**v.suggest** - Want to see something added to the bot? Suggest it! This is not to be used for suggestions for Vimm's Lair, only for suggestions for this bot.", inline=False)
         embed.set_footer(text=botver + " by PrincessLillie#2523", icon_url=self.bot.user.avatar_url)

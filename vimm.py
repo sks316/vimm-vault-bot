@@ -1,5 +1,5 @@
-import discord
-from discord.ext import tasks, commands
+import nextcord
+from nextcord.ext import tasks, commands
 import asyncio
 import random
 import traceback
@@ -10,7 +10,7 @@ import vimm_config as config
 print('Starting... This may take some time.')
 print('')
 
-intents = discord.Intents.all()
+intents = nextcord.Intents.all()
 bot = commands.Bot(command_prefix='v.', intents=intents, owner_id=config.owner, case_insensitive=True)
 cogs = ['cogs.general', 'cogs.other', 'cogs.admin', 'cogs.vault']
 
@@ -60,7 +60,7 @@ async def on_ready():
 @tasks.loop(minutes=10.0)
 async def change_status():
     playing = random.choice(botstatus)
-    await bot.change_presence(activity=discord.Game(name=playing))
+    await bot.change_presence(activity=nextcord.Game(name=playing))
 
 @change_status.before_loop
 async def before_change_status():
@@ -93,7 +93,7 @@ async def info(ctx):
     else:
         time_format = "**{h}** hours, **{m}** minutes, and **{s}** seconds."
     uptime_stamp = time_format.format(d=days, h=hours, m=minutes, s=seconds)
-    embed = discord.Embed(title=botver, description="I'm a bot made to post new releases in The Vault at Vimm's Lair to a channel in the Vimm's Lair Discord server. In the future, I'll also be able to look up games in The Vault and request games to be uploaded to The Vault.", color=0x7289da)
+    embed = nextcord.Embed(title=botver, description="I'm a bot made to post new releases in The Vault at Vimm's Lair to a channel in the Vimm's Lair Discord server. In the future, I'll also be able to look up games in The Vault and request games to be uploaded to The Vault.", color=0x7289da)
     embed.add_field(name="Made by:", value=dev.name + "#" + dev.discriminator)
     embed.add_field(name="Uptime:", value="This bot has been online for {}".format(uptime_stamp), inline=False)
     embed.add_field(name="Source Code:", value="[My source code is available on GitHub.](https://github.com/sks316/vimm-vault-bot)", inline=False)
@@ -133,7 +133,7 @@ async def on_command_error(ctx, error):
             await ctx.message.delete(delay=5)
             return await err.delete(delay=5)
 
-        elif isinstance(error, discord.Forbidden):
+        elif isinstance(error, nextcord.Forbidden):
             err = await ctx.send(f":x: I don't have sufficient permissions to do something. If you tried running **p-help**, make sure your DMs are open. Otherwise, please have an administrator check my permissions.")
             await ctx.message.delete(delay=10)
             return await err.delete(delay=10)
