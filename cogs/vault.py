@@ -57,9 +57,10 @@ class Vault(commands.Cog):
                     #--we take the game title and the game system and store them accordingly--#
                     game = x['title']
                     system = x['system']
+                    URL = x['url']
                     #--finally, we return this information to Discord in our specified channel--#
                     try:
-                        await channel.send(f"`{system}: {game}` has been uploaded to The Vault.")
+                        await channel.send(f"`{system}: {game}` has been uploaded to The Vault.\n <{URL}>")
                     except:
                         pass
             except:
