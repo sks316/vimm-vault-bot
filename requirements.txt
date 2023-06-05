@@ -1,5 +1,5 @@
-nextcord
-asyncio
+disnake
 aiohttp
+python-dotenv
 python-dateutil
 pytz
