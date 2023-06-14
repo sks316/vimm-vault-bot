@@ -50,7 +50,7 @@ botstatus = [
     'XBOX',
     'XBOX 360',
     'XBOX One',
-    'XBOX Series X'
+    'XBOX Series X',
     'Atari 2600',
     'Atari 5200',
     'Atari 7800',
@@ -59,7 +59,7 @@ botstatus = [
     'Atari VCS',
     'with /faq',
     'with Vimm',
-    'with Player1041'
+    'with Player1041',
     'on an emulator',
     'with No-Intro',
     'with Redump',
@@ -67,7 +67,7 @@ botstatus = [
     'around in #vault-updates',
     'around in The Vault',
     'with files',
-    'a hidden game...'
+    'a hidden game...',
     'with the classics, preserved since 1997!'
 ]
 
