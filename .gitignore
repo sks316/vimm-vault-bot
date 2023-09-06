@@ -4,3 +4,6 @@
 vimm_config.py
 start.bat
 timestamp.txt
+.env
+.vscode/launch.json
+*.pyc
