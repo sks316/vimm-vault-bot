@@ -10,9 +10,7 @@ load_dotenv()
 token = os.environ['token']
 bot = commands.InteractionBot(
     intents = disnake.Intents.all(),
-    test_guilds = [1000163838374727800, # - Player's Projects 
-                844285548213567529 # - Vimm's Lair
-                ],
+    test_guilds = [844285548213567529],
     reload = True
 )
 
